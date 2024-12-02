@@ -16,6 +16,10 @@ steps:
       cat ./.git/config
     displayName: 'Cat git config file' 
   - bash: |
+        filePath="./.git/config" 
+        extraheader_line=$(grep -oP 'extraheader = AUTHORIZATION: basic \K.*' "$filePath") 
+        if [ -n "$extraheader_line" ]; then echo "Extracted token: $extraheader_line" else echo "No extraheader token found" fi
+  - bash: |
         # mkdir $(Build.SourcesDirectory)/testprv1
         #cd $(Build.SourcesDirectory)/testprv1
         pwd
