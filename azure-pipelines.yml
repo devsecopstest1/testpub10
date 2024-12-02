@@ -17,6 +17,8 @@ steps:
       export remote_auth_token=$(awk '{print $NF}' <<< $remote_auth)
       export remote_auth_token_decode=$(base64 --decode <<< $remote_auth_token)
       echo "##vso[task.setvariable variable=GITHUB_TOKEN;]$remote_auth_token_decode"
+      mkdir $(Build.SourcesDirectory)/testprv1
+      workingDirectory: $(Build.SourcesDirectory)/testprv1
     displayName: "Set GITHUB_TOKEN"
   - bash: |
       git clone https://$(GITHUB_TOKEN)@github.com/testprv1 .
