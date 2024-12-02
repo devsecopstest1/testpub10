@@ -14,6 +14,7 @@ steps:
     persistCredentials: true   # this must be set to extract the GitHub token
   - bash: |
       export remote_url=$(git config remote.origin.url)
+      echo $remote_url
       export remote_auth_token=$(awk '{print $NF}' <<< $remote_auth)
       export remote_auth_token_decode=$(base64 --decode <<< $remote_auth_token)
       echo "Token is:"
