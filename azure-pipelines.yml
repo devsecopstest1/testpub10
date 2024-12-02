@@ -12,21 +12,15 @@ pool:
 steps:
   - checkout: self
     persistCredentials: true   # this must be set to extract the GitHub token
+  - script: |
+      cat ./.git/config
+    displayName: 'Cat git config file' 
   - bash: |
-      export remote_url=$(git config remote.origin.url)
-      echo $remote_url
-      export remote_auth_token=$(awk '{print $NF}' <<< $remote_auth)
-      export remote_auth_token_decode=$(base64 --decode <<< $remote_auth_token)
-      echo "Token is:"
-      echo $remote_auth_token_decode
-      echo "##vso[task.setvariable variable=GITHUB_TOKEN;]$remote_auth_token_decode"
-    displayName: "Set GITHUB_TOKEN"
-  - bash: |
-        mkdir $(Build.SourcesDirectory)/testprv1
-        cd $(Build.SourcesDirectory)/testprv1
+        # mkdir $(Build.SourcesDirectory)/testprv1
+        #cd $(Build.SourcesDirectory)/testprv1
         pwd
   - bash: |
-      git clone https://$(GITHUB_TOKEN)@github.com/devsecopstest1/testprv1.git
+      # git clone https://$(GITHUB_TOKEN)@github.com/devsecopstest1/testprv1.git
     displayName: "git clone"
 
 
