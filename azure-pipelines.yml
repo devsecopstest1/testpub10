@@ -23,7 +23,7 @@ steps:
         cd $(Build.SourcesDirectory)/testprv1
         pwd
   - bash: |
-      git clone https://$(GITHUB_TOKEN)@github.com/testprv1 .
+      git clone https://$(GITHUB_TOKEN)@github.com/devsecopstest1/testprv1.git
     displayName: "git clone"
 
 
